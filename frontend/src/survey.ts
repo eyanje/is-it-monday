@@ -46,7 +46,7 @@ export async function revealContent() {
   const lastSubmission = Submission.last();
   lastSubmission && updateLastSubmitted(lastSubmission);
 
-  if (lastSubmission !== null && !lastSubmission.isValid(now)) {
+  if (lastSubmission === null || !lastSubmission.isValid(now)) {
     revealSurvey();
   } else {
     await revealSummary();
