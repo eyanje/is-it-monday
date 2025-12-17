@@ -12,10 +12,18 @@ use axum::{
 use chrono::{
     Local,
 };
+use http::{
+    header::{CONTENT_TYPE},
+    Method,
+};
 use std::{
     sync::{
         Arc,
     },
+};
+use tower_http::cors::{
+    AllowOrigin,
+    CorsLayer,
 };
 
 use crate::{
@@ -42,8 +50,15 @@ async fn summary(
     Ok(Json(summary))
 }
 
-pub fn router(app: Arc<App<Local>>) -> Router {
+pub fn router<O>(app: Arc<App<Local>>, allowed_origins: O) -> Router
+where O: Into<AllowOrigin> {
+    let cors_layer = CorsLayer::new()
+        .allow_methods([Method::GET, Method::POST])
+        .allow_headers([CONTENT_TYPE])
+        .allow_origin(allowed_origins);
+
     Router::new()
         .route("/", get(summary).post(submit))
+        .layer(cors_layer)
         .with_state(app)
 }

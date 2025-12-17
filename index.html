@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Is it Monday?</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+      body {
+        --primary-color: #004;
+        --secondary-color: #cef;
+
+        background-color: #e0f0ff;
+        color: var(--primary-color);
+        font-family: sans-serif;
+
+        text-align: center;
+      }
+
+      .survey {
+        margin-bottom: 1.5em;
+      }
+      .survey fieldset {
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        border-color: var(--secondary-color);
+      }
+      form button[type=submit] {
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+      .summary table {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .summary thead th {
+        border-bottom: 0.1em solid var(--primary-color);
+      }
+      .summary .time-period {
+        text-align: left;
+      }
+      .summary .number {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Is it Monday?</h1>
+    <p class="last-submitted">No recorded submissions</p>
+    <template id="form-template">
+      <form class="survey">
+        <fieldset>
+          <legend>Is it Monday?</legend>
+          <input type="radio" id="monday" name="today" value="monday" required>
+          <label for="monday">It is Monday.</label>
+          <input type="radio" id="not-monday" name="today" value="not-monday">
+          <label for="not-monday">It is not Monday.</label>
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+    </template>
+    <template id="summary-template">
+      <section class="summary">
+        <h2>Summary</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="time-period">Time period</th>
+              <th class="number">Yes</th>
+              <th class="number">No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="last-24-hours">
+              <td class="time-period">Last 24 hours</td>
+              <td class="yes number"></td>
+              <td class="no number"></td>
+            </tr>
+            <tr class="last-12-hours">
+              <td class="time-period">Last 12 hours</td>
+              <td class="yes number"></td>
+              <td class="no number"></td>
+            </tr>
+            <tr class="last-6-hours">
+              <td class="time-period">Last 6 hours</td>
+              <td class="yes number"></td>
+              <td class="no number"></td>
+            </tr>
+            <tr class="last-3-hours">
+              <td class="time-period">Last 3 hours</td>
+              <td class="yes number"></td>
+              <td class="no number"></td>
+            </tr>
+            <tr class="last-hour">
+              <td class="time-period">Last hour</td>
+              <td class="yes number"></td>
+              <td class="no number"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </template>
+    <div id="content"></div>
+    <script src="./frontend/dist/survey.js" type="module"></script>
+    <script src="./frontend/dist/summary.js" type="module"></script>
+  </body>
+</html>
