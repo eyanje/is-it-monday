@@ -1,4 +1,4 @@
-const endpoint = 'http://eyanje-debian:3000';
+const endpoint = 'http://monday.eyanje.net';
 
 export interface Question {
   yes: number,
@@ -30,6 +30,7 @@ export async function summary() {
   let response = await fetch(endpoint);
   if (!await response.ok) {
     console.error("Summary", response);
+    throw new Error(await response.text());
   }
   return await response.json() as Summary;
 }

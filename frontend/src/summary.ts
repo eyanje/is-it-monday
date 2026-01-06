@@ -1,5 +1,6 @@
 import * as api from "./api.js";
 import type { Question, Summary } from "./api.js";
+import { setError } from "./error.js";
 
 export async function revealSummary() {
   // Insert summary into page
@@ -34,6 +35,12 @@ function renderSummary(summary: Summary) {
 }
 
 async function updateSummary() {
-  let summary = await api.summary();
+  let summary;
+  try {
+    summary = await api.summary();
+  } catch (error: any) {
+    setError(error);
+    return;
+  }
   renderSummary(summary);
 }

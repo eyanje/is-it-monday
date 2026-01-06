@@ -1,4 +1,5 @@
 import * as api from "./api.js";
+import { setError } from "./error.js";
 import { Submission, updateLastSubmitted } from "./submission.js";
 import { revealSummary } from "./summary.js";
 
@@ -20,7 +21,12 @@ async function submitSurvey(event: SubmitEvent) {
     default:
       throw new Error("missing response");
   }
-  await api.submit(formResponse);
+  try {
+    await api.submit(formResponse);
+  } catch (error: any) {
+    setError(error);
+    return;
+  }
 
   // Log history
   const submission = new Submission(new Date())

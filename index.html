@@ -17,6 +17,10 @@
         text-align: center;
       }
 
+      .error {
+        color: red;
+      }
+
       .survey {
         margin-bottom: 1.5em;
       }
@@ -25,6 +29,7 @@
         margin-right: auto;
         width: fit-content;
         border-color: var(--secondary-color);
+        text-align: left;
       }
       form button[type=submit] {
         margin-top: 1em;
@@ -48,14 +53,19 @@
   <body>
     <h1>Is it Monday?</h1>
     <p class="last-submitted">No recorded submissions</p>
+    <p class="error"></p>
     <template id="form-template">
       <form class="survey">
         <fieldset>
           <legend>Is it Monday?</legend>
-          <input type="radio" id="monday" name="today" value="monday" required>
-          <label for="monday">It is Monday.</label>
-          <input type="radio" id="not-monday" name="today" value="not-monday">
-          <label for="not-monday">It is not Monday.</label>
+          <div>
+            <input type="radio" id="monday" name="today" value="monday" required>
+            <label for="monday">It is Monday.</label>
+          </div>
+          <div>
+            <input type="radio" id="not-monday" name="today" value="not-monday">
+            <label for="not-monday">It is not Monday.</label>
+          </div>
         </fieldset>
         <button type="submit">Submit</button>
       </form>
