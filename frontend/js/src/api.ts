@@ -1,4 +1,4 @@
-const endpoint = 'http://monday.eyanje.net';
+const endpoint = 'https://api.is-it-monday.eyanje.net';
 
 export interface Question {
   yes: number,
@@ -21,16 +21,17 @@ export async function submit(answer: boolean) {
     },
     body: JSON.stringify(answer)
   });
-  if (!await response.ok) {
-    throw new Error(await response.text());
+  if (!response.ok) {
+    console.error("Submit", response);
+    throw new Error(response.statusText);
   }
 }
 
 export async function summary() {
   let response = await fetch(endpoint);
-  if (!await response.ok) {
+  if (!response.ok) {
     console.error("Summary", response);
-    throw new Error(await response.text());
+    throw new Error(response.statusText);
   }
   return await response.json() as Summary;
 }

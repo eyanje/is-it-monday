@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "monday",
   "version": "1.0.0",
   "description": "",
   "browser": "dist/entrypoint.js",

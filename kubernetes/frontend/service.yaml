@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: is-it-monday-frontend
+  labels:
+    app.kubernetes.io/name: is-it-monday-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: is-it-monday
+spec:
+  selector:
+    app.kubernetes.io/name: is-it-monday-frontend
+  ports:
+    - port: 80
+      targetPort: http
+...

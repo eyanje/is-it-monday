@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: is-it-monday-frontend
+  labels:
+    app.kubernetes.io/name: is-it-monday-frontend
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: is-it-monday
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: is-it-monday-frontend
+      app.kubernetes.io/component: frontend
+      app.kubernetes.io/part-of: is-it-monday
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: is-it-monday-frontend
+        app.kubernetes.io/component: frontend
+        app.kubernetes.io/part-of: is-it-monday
+    spec:
+      containers:
+        - name: frontend
+          image: harbor.eyanje.net/is-it-monday/frontend:latest
+          ports:
+            - containerPort: 80
+              name: http
+...

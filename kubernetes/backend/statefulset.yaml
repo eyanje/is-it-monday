@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: is-it-monday-backend
+  labels:
+spec:
+  serviceName: is-it-monday-backend
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: is-it-monday-backend
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/part-of: is-it-monday
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: is-it-monday-backend
+        app.kubernetes.io/component: backend
+        app.kubernetes.io/part-of: is-it-monday
+    spec:
+      containers:
+        - name: backend
+          image: harbor.eyanje.net/is-it-monday/backend:latest
+          ports:
+            - containerPort: 80
+              name: http
+          envFrom:
+            - configMapRef:
+                name: is-it-monday
+          volumeMounts:
+            - mountPath: /var/run/is-it-monday
+              name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app.kubernetes.io/name: is-it-monday-backend
+          app.kubernetes.io/component: backend
+          app.kubernetes.io/part-of: is-it-monday
+      spec:
+        accessModes: ["ReadWriteOncePod"]
+        resources:
+          requests:
+            storage: 512M
+...

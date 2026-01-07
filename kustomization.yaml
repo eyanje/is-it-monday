@@ -1,0 +1,10 @@
+resources:
+  - kubernetes/backend/service.yaml
+  - kubernetes/backend/statefulset.yaml
+  - kubernetes/frontend/deployment.yaml
+  - kubernetes/frontend/service.yaml
+  - kubernetes/ingress.yaml
+configMapGenerator:
+  - name: is-it-monday
+    envs:
+      - ".env"

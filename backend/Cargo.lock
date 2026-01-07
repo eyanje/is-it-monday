@@ -210,20 +210,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "backend"
-version = "0.1.0"
-dependencies = [
- "axum 0.8.7",
- "chrono",
- "futures",
- "http 1.4.0",
- "libsql",
- "serde",
- "tokio",
- "tower-http 0.6.8",
-]
-
-[[package]]
 name = "base64"
 version = "0.21.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1139,6 +1125,20 @@ dependencies = [
  "libc",
  "wasi",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "monday"
+version = "0.1.0"
+dependencies = [
+ "axum 0.8.7",
+ "chrono",
+ "futures",
+ "http 1.4.0",
+ "libsql",
+ "serde",
+ "tokio",
+ "tower-http 0.6.8",
 ]
 
 [[package]]
